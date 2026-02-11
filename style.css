@@ -1268,59 +1268,70 @@ body {
 
 /* === PREMIUM FEATURES PACK === */
 
-/* Dark Theme Variables */
+/* Dark Theme Variables (Cuter/Midnight Romantic) */
 body.dark-theme {
-    --primary-gradient: linear-gradient(135deg, #2d1b2e 0%, #1a0f1a 100%);
-    --card-bg: rgba(45, 27, 46, 0.7);
-    --text-main: #ffd1dc;
+    --primary-gradient: linear-gradient(135deg, #1b0d24 0%, #0d0612 100%);
+    --card-bg: rgba(43, 22, 48, 0.7);
+    --text-main: #ffcbd1;
     --text-muted: #e0b0bc;
-    --glass-bg: rgba(30, 15, 30, 0.8);
-    --border-color: rgba(255, 192, 203, 0.2);
-    background: #0f0a0f;
+    --glass-bg: rgba(27, 13, 36, 0.85);
+    --border-color: rgba(255, 182, 193, 0.3);
+    background: #0d0612;
 }
 
 body.dark-theme .bento-item {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px rgba(245, 87, 108, 0.15); /* Pinkish glow */
 }
 
-body.dark-theme .title, body.dark-theme .subtitle {
-    color: var(--text-main);
-    text-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+body.dark-theme .title {
+    color: #ffb6c1;
+    text-shadow: 0 0 15px rgba(245, 87, 108, 0.4);
 }
 
-/* Floating Controls */
+body.dark-theme .subtitle, 
+body.dark-theme .photo-caption, 
+body.dark-theme #countdown p,
+body.dark-theme .letter-card p {
+    color: #ffd1dc;
+}
+
+/* Floating Controls - Refined & Discrete */
 .floating-controls {
     position: fixed;
-    top: 20px;
+    bottom: 30px; /* Moved to bottom for mobile accessibility */
     right: 20px;
     display: flex;
-    gap: 12px;
+    flex-direction: column; /* Stack vertically */
+    gap: 10px;
     z-index: 9000;
 }
 
 .control-btn {
-    width: 45px;
-    height: 45px;
+    width: 42px; /* Slightly smaller */
+    height: 42px;
     border-radius: 50%;
     border: none;
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid var(--border-color);
+    opacity: 0.8; /* Subtle by default */
 }
 
 .control-btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    background: white;
+    transform: scale(1.1);
+    opacity: 1;
+    background: var(--primary-color);
+    color: white;
 }
 
 /* Pulsing Profile Photo */
@@ -1393,5 +1404,26 @@ body.dark-theme .title, body.dark-theme .subtitle {
 
 /* Adjustments for Bento Grid spacing with profile */
 .header-card {
-    min-height: 300px; /* Increased to fit profile */
+    min-height: 280px; 
+    padding: 2rem 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .floating-controls {
+        bottom: 20px;
+        right: 15px;
+        gap: 8px;
+    }
+    .control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    .pulse-profile {
+        width: 80px;
+        height: 80px;
+    }
+    .header-card {
+        min-height: 250px;
+    }
 }
