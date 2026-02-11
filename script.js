@@ -19,6 +19,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Spawn a few on load
     for (let i = 0; i < 5; i++) setTimeout(spawnHeart, i * 300);
 
+    // === CODE PROTECTION & DETERRENTS ===
+    // 1. Disable Right-click
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // 2. Disable common DevTools shortcuts
+    document.addEventListener('keydown', (e) => {
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        if (
+            e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+            (e.ctrlKey && e.key === 'u') ||
+            (e.metaKey && e.altKey && (e.key === 'i' || e.key === 'j' || e.key === 'u' || e.key === 'c')) // Mac shortcuts
+        ) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // 3. Console warning
+    console.log('%cหยุดก่อน!', 'color: red; font-size: 30px; font-weight: bold; -webkit-text-stroke: 1px black;');
+    console.log('%cพื้นที่ส่วนตัว ห้ามแอบดูโค้ดล่ะ! 🤫💖', 'font-size: 16px;');
+
+    // 4. (Optional) Detect DevTools opening by screen size difference
+    // This is just a deterrent, not fool-proof
+    setInterval(() => {
+        const threshold = 160;
+        if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+            // DevTools might be open
+        }
+    }, 1000);
+
     // === DATA INITIALIZATION FROM CONFIG ===
     function initAppFromConfig() {
         // Basic Info
