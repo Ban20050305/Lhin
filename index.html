@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Anniversary, By Lhin!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts-bg" id="floating-hearts"></div>
+    <div id="lock-screen" class="num-pad-overlay">
+        <div class="glass lock-card">
+            <h2 class="lock-title">ล็อคหัวใจ ❤️</h2>
+            <div class="pin-code-container">
+                <input type="tel" maxlength="1" class="pin-box" autofocus>
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+                <input type="tel" maxlength="1" class="pin-box">
+            </div>
+            <button id="unlock-btn" class="glow-button">ปลดล็อคหัวใจ</button>
+        </div>
+    </div>
+
+    <div class="container hidden-content" id="main-content">
+        <!-- BENTO GRID DASHBOARD -->
+        <div id="bento-grid" class="bento-grid fade-in">
+            <!-- Header Card (Full Width) -->
+            <div class="bento-item header-card">
+                <div class="floating-heart">❤️</div>
+                <h1 class="title">สุขสันต์วันครบรอบ</h1>
+                <h2 class="subtitle">แด่.........</h2>
+            </div>
+
+            <!-- Time Card -->
+            <div class="bento-item time-preview" onclick="showSection('section-time')">
+                <div class="icon-container">⏳</div>
+                <h3>เวลาของเรา</h3>
+            </div>
+
+            <!-- Letter Card -->
+            <div class="bento-item letter-preview" onclick="showSection('section-letter')">
+                <div class="icon-container">💌</div>
+                <h3>จดหมายจากใจ</h3>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="bento-item quiz-preview" onclick="showSection('section-quiz')">
+                <div class="icon-container">❓</div>
+                <h3>ทดสอบใจ</h3>
+            </div>
+
+            <!-- Memories Card -->
+            <div class="bento-item memories-preview" onclick="showSection('section-memories')">
+                <div class="icon-container">📸</div>
+                <h3>ความทรงจำ</h3>
+            </div>
+
+            <!-- Scratch Card -->
+            <div class="bento-item scratch-preview" onclick="showSection('section-scratch')">
+                <div class="icon-container">🎟️</div>
+                <h3>ขูดลุ้นรัก</h3>
+            </div>
+
+            <!-- Matching Game Card -->
+            <div class="bento-item match-preview" onclick="showSection('section-match')">
+                <div class="icon-container">🎨</div>
+                <h3>จับคู่รัก</h3>
+            </div>
+        </div>
+
+        <!-- SECTIONS (Hidden by default) -->
+        
+        <!-- Section: Our Time -->
+        <section id="section-time" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <div class="glass time-card">
+                <div class="section-icon">⏳</div>
+                <h3 class="section-title">เวลาที่เราได้รักกัน</h3>
+                <p class="section-subtitle">ทุกวินาทีมีค่าเพราะมีเธอ 💕</p>
+                <div id="timer">
+                    <div class="time-box">
+                        <span id="days">0</span>
+                        <div class="time-label">วัน</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">0</span>
+                        <div class="time-label">ชั่วโมง</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">0</span>
+                        <div class="time-label">นาที</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">0</span>
+                        <div class="time-label">วินาที</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Letter -->
+        <section id="section-letter" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <!-- State 1: Sealed Envelope -->
+            <div id="envelope-sealed" class="envelope-sealed" onclick="openLetter()">
+                <div class="envelope-body">
+                    <div class="envelope-flap-top"></div>
+                    <div class="envelope-heart">💌</div>
+                    <p class="envelope-label">แตะเพื่อเปิดจดหมาย</p>
+                </div>
+            </div>
+
+            <!-- State 2: Opened Letter (hidden initially) -->
+            <div id="letter-opened" class="letter-opened" style="display: none;">
+                <div class="letter-paper">
+                    <div class="letter-header">
+                        <span class="letter-deco">💕</span>
+                        <h3>จดหมายจากใจ</h3>
+                        <span class="letter-deco">💕</span>
+                    </div>
+                    <hr class="letter-divider">
+                    <div class="letter-body">
+                        <p class="letter-greeting"><strong>ถึง.......... ,</strong></p>
+                        <p>
+                            ขณะที่เขียนจดหมายฉบับนี้ เค้าตระหนักเลยว่าเค้าโชคดีแค่ไหนที่มีเธอ
+                        </p>
+                        <p>
+                            ทุกๆ วันที่มีเธอเหมือนเป็นการผจญภัยครั้งใหม่
+                            และทุกช่วงเวลาคือความทรงจำที่มีค่า
+                        </p>
+                        <p>
+                            เธอคือความสุข คือกำลังใจ และเป็นเพื่อนที่ดีที่สุดของเค้า
+                            ขอบคุณที่เป็นเธอนะ และขอบคุณที่เลือกเค้าในทุกๆ วัน
+                        </p>
+                        <p>
+                            เค้าสัญญาว่าจะรักเธอไม่ว่าจะผ่านอะไรก็ตาม
+                            สุขสันต์วันครบรอบนะที่รัก
+                        </p>
+                    </div>
+                    <hr class="letter-divider">
+                    <p class="letter-signature">
+                        รักเสมอ,<br>
+                        <strong>[ชื่อของเธอ]</strong>
+                    </p>
+                </div>
+                <button class="close-letter-btn" onclick="closeLetter()">พับจดหมาย ✉️</button>
+            </div>
+        </section>
+
+        <!-- Section: Quiz -->
+        <section id="section-quiz" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <div class="glass quiz-card">
+                <div class="section-icon">💝</div>
+                <h3 class="section-title">ทดสอบความรู้ใจ</h3>
+                <p class="section-subtitle">มาดูว่าเธอรู้จักเค้าแค่ไหน~</p>
+                <div id="quiz-container">
+                    <p id="quiz-question">คำถาม...</p>
+                    <div id="quiz-options"></div>
+                    <p id="quiz-result"></p>
+                    <button id="next-question-btn" class="glow-button" style="display:none; margin-top:1rem;">ข้อต่อไป</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Memories -->
+        <section id="section-memories" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <div class="section-icon">📸</div>
+            <h3 class="section-title">ความทรงจำของเรา</h3>
+            <p class="section-subtitle">ช่วงเวลาดีๆ ที่เก็บไว้ในหัวใจ 🥰</p>
+            <div class="gallery">
+                <!-- 💡 วิธีเพิ่มรูปจริง: เปลี่ยน <div class="photo-placeholder"> เป็น <img src="ชื่อไฟล์.jpg"> -->
+                <!-- แล้ววางไฟล์รูปไว้ในโฟลเดอร์เดียวกับ index.html -->
+
+                <div class="photo-frame rotate-left">
+                    <div class="photo-placeholder">📷<br>เดทแรก</div>
+                    <div class="photo-caption">จุดเริ่มต้นของเรา 💫</div>
+                </div>
+                <div class="photo-frame rotate-right">
+                    <div class="photo-placeholder">📷<br>เรื่องตลก</div>
+                    <div class="photo-caption">เสียงหัวเราะ & รอยยิ้ม 😂</div>
+                </div>
+                <div class="photo-frame rotate-left">
+                    <div class="photo-placeholder">📷<br>ทริปโปรด</div>
+                    <div class="photo-caption">การผจญภัยของเรา 🌈</div>
+                </div>
+                <div class="photo-frame rotate-right">
+                    <div class="photo-placeholder">📷<br>วันพิเศษ</div>
+                    <div class="photo-caption">วันที่ไม่มีวันลืม 🎂</div>
+                </div>
+                <div class="photo-frame rotate-left">
+                    <div class="photo-placeholder">📷<br>ของกิน</div>
+                    <div class="photo-caption">มื้อโปรดของเรา 🍰</div>
+                </div>
+                <div class="photo-frame rotate-right">
+                    <div class="photo-placeholder">📷<br>คู่รัก</div>
+                    <div class="photo-caption">เราสองคน 💑</div>
+                </div>
+                <div class="photo-frame rotate-left">
+                    <div class="photo-placeholder">📷<br>ซีรีส์คู่</div>
+                    <div class="photo-caption">ดูด้วยกันทุกคืน 🎬</div>
+                </div>
+                <div class="photo-frame rotate-right">
+                    <div class="photo-placeholder">📷<br>ของขวัญ</div>
+                    <div class="photo-caption">เซอร์ไพรส์เล็กๆ 🎁</div>
+                </div>
+                <div class="photo-frame rotate-left">
+                    <div class="photo-placeholder">📷<br>กอดกัน</div>
+                    <div class="photo-caption">อบอุ่นที่สุด 🤗</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Scratch Cards -->
+        <section id="section-scratch" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <div class="section-icon">🎟️</div>
+            <h3 class="section-title">ขูดลุ้นเซอร์ไพรส์</h3>
+            <p class="section-subtitle">ใช้นิ้วขูดเพื่อเปิดข้อความลับ 💝</p>
+            <div class="scratch-grid">
+                <div class="scratch-card">
+                    <div class="scratch-reveal">💖<br>เธอคือคนที่<br>ดีที่สุดของเค้า</div>
+                    <canvas class="scratch-canvas"></canvas>
+                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
+                </div>
+                <div class="scratch-card">
+                    <div class="scratch-reveal">🥰<br>เค้ารักเธอ<br>มากที่สุดเลย</div>
+                    <canvas class="scratch-canvas"></canvas>
+                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
+                </div>
+                <div class="scratch-card">
+                    <div class="scratch-reveal">🌟<br>ขอให้เราอยู่<br>ด้วยกันนานๆ</div>
+                    <canvas class="scratch-canvas"></canvas>
+                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
+                </div>
+                <div class="scratch-card">
+                    <div class="scratch-reveal">💌<br>เธอคือของขวัญ<br>ที่วิเศษที่สุด</div>
+                    <canvas class="scratch-canvas"></canvas>
+                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
+                </div>
+            </div>
+            <button class="close-letter-btn" onclick="resetScratchCards()" style="margin-top:1.5rem;">🔄 รีเซ็ตการ์ดใหม่</button>
+        </section>
+
+        <!-- Section: Matching Game -->
+        <section id="section-match" class="content-section">
+            <button class="back-btn" onclick="showGrid()">🏠 กลับหน้าหลัก</button>
+            <div class="section-icon">🎨</div>
+            <h3 class="section-title">จับคู่รัก</h3>
+            <p class="section-subtitle">หาคู่ที่เหมือนกันให้ครบ! 💕</p>
+            <div class="match-stats">
+                <span class="match-moves">กด: <strong id="match-moves">0</strong> ครั้ง</span>
+                <span class="match-pairs">คู่: <strong id="match-pairs">0</strong>/6</span>
+            </div>
+            <div class="match-board" id="match-board"></div>
+            <button class="close-letter-btn" onclick="initMatchGame()" style="margin-top:1.5rem;">🔄 เล่นใหม่</button>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

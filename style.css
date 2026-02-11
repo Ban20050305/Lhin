@@ -1,0 +1,1033 @@
+:root {
+  --primary-color: #ff9a9e;
+  --secondary-color: #fecfef;
+  --text-color: #5d4037;
+  --accent-color: #d4af37; /* Gold */
+  --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Mali", "Quicksand", sans-serif;
+  background: #fad0c4;
+  background-image: linear-gradient(315deg, #fad0c4 0%, #ffd1ff 74%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating Hearts Background */
+.floating-hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart-particle {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: riseUp linear forwards;
+}
+
+@keyframes riseUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(0.5);
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) rotate(360deg) scale(1);
+    }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Typography */
+.title {
+  font-family: "Mali", cursive;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  color: var(--accent-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: "Mali", cursive;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+  color: var(--text-color);
+  margin-bottom: clamp(1.5rem, 8vw, 3rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism Card */
+.glass {
+  background: var(--glass-bg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+
+/* Section Headers */
+.section-icon {
+    font-size: 3rem;
+    margin-bottom: 0.3rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.section-title {
+    font-family: 'Mali', cursive;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.3rem;
+}
+
+.section-subtitle {
+    font-family: 'Mali', cursive;
+    font-size: 1rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+}
+
+/* Content Sections */
+.content-section {
+    display: none;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.photo-frame {
+  width: 200px;
+  height: 250px;
+  padding: 10px;
+  background: white;
+  box-shadow: 0 10px 25px rgba(255, 154, 158, 0.2);
+  border-radius: 12px;
+  transform: rotate(-5deg);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.photo-frame:hover {
+  transform: scale(1.08) rotate(0deg);
+  box-shadow: 0 20px 40px rgba(255, 154, 158, 0.35);
+  z-index: 10;
+}
+
+.photo-frame.rotate-right {
+  transform: rotate(5deg);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 85%;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Mali', cursive;
+  overflow: hidden;
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Button */
+.glow-button {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  color: white;
+  background: #ff9a9e;
+  background: linear-gradient(to right, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 105, 135, 0.4);
+  transition: all 0.3s ease;
+  font-family: "Mali", serif;
+  letter-spacing: 1px;
+}
+
+.glow-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 105, 135, 0.6);
+}
+
+.glow-button:active {
+  transform: translateY(1px);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Lock Screen Styles */
+.num-pad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.lock-card {
+    text-align: center;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    max-width: 500px;
+    width: 90%;
+    background: rgba(255, 182, 193, 0.9); /* Darker pink like reference */
+    border: 3px solid white;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+.lock-title {
+    font-family: 'Mali', cursive;
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    color: white; /* Changed from gold to white for better readability */
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.lock-question {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.pin-code-container {
+    display: flex;
+    justify-content: center;
+    gap: clamp(2px, 1.2vw, 10px);
+    margin-bottom: 2rem;
+}
+
+.pin-box {
+    width: clamp(28px, 8.5vw, 45px);
+    height: clamp(40px, 11vw, 55px);
+    border: none;
+    border-radius: clamp(5px, 1.5vw, 10px);
+    background: white;
+    font-size: clamp(1rem, 4.5vw, 2rem);
+    text-align: center;
+    font-family: 'Mali', cursive;
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.pin-box:focus {
+    outline: none;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    border: 2px solid var(--primary-color);
+}
+
+.text-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.text-button:hover {
+    opacity: 1;
+}
+
+.hidden-hint {
+    display: none;
+    font-style: italic;
+    margin-top: 10px;
+    color: #d63384;
+}
+
+/* Utility to hide main content initially */
+.hidden-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease;
+    height: 0;
+    overflow: hidden;
+}
+
+.show-content {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    overflow: visible; /* Allow bento grid hover effects */
+}
+
+.hide-lock {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  .photo-frame {
+    width: 150px;
+    height: 200px;
+  }
+}
+
+/* --- Back Button --- */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.6rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 154, 158, 0.3);
+    border-radius: 50px;
+    color: #ff9a9e;
+    font-family: 'Mali', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 154, 158, 0.15);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 154, 158, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+/* --- New Section Styles --- */
+
+/* --- Bento Grid Styles --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-bottom: 3rem;
+}
+
+.bento-item {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 30px; /* Cuter, rounder corners */
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 180px; /* Fixed height for uniformity */
+}
+
+.bento-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 20px 40px rgba(255, 154, 158, 0.3);
+    border-color: #ffd1ff;
+}
+
+/* Specific Card Styles */
+.header-card {
+    grid-column: span 2;
+    height: auto;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    border: none;
+    color: white;
+    cursor: default; /* No pointer cursor */
+}
+
+.header-card:hover {
+    transform: none; /* No hover effect */
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.2);
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    border-color: transparent;
+}
+
+.header-card .title {
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
+    color: white;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    margin-bottom: 0px;
+    font-family: 'Mali', sans-serif; /* Cuter font */
+    font-weight: 700;
+}
+
+.header-card .subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    color: #fff;
+    margin-top: 5px;
+    font-family: 'Mali', cursive;
+    opacity: 0.9;
+}
+
+/* Balance the Grid: All previews span 1 column by default now */
+.memories-preview {
+    grid-column: span 1; /* Was span 2, now 1 to fit next to Quiz */
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); /* Pastel Blue */
+}
+
+.time-preview {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); /* Pastel Orange */
+}
+
+.letter-preview {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); /* Pastel Pink */
+}
+
+.quiz-preview {
+    background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%); /* Pastel Grey/Blue */
+}
+
+/* Icons */
+.icon-container {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.bento-item:hover .icon-container {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.bento-item h3 {
+    font-family: 'Mali', sans-serif;
+    font-weight: 700;
+    color: #555;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Header Heart Animation */
+.floating-heart {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive Grid */
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-card, .memories-preview, .time-preview, .letter-preview, .quiz-preview {
+        grid-column: span 1;
+        height: auto;
+        min-height: 150px;
+    }
+}
+
+
+/* Timer Section */
+.time-card {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+    padding: clamp(0.5rem, 3vw, 1rem) clamp(0.4rem, 2vw, 0.8rem);
+    border-radius: 18px;
+    min-width: clamp(70px, 20vw, 85px);
+    font-weight: bold;
+    color: var(--text-color);
+    box-shadow: 0 8px 20px rgba(255, 154, 158, 0.15);
+    border: 2px solid rgba(255, 154, 158, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.time-box:hover {
+    transform: translateY(-3px);
+}
+
+.time-box span {
+    display: block;
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    color: var(--primary-color);
+    font-family: 'Mali', cursive;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.time-label {
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+    color: #aaa;
+    margin-top: 5px;
+    font-family: 'Mali', cursive;
+}
+
+/* === Letter Section (Clean Rebuild) === */
+
+/* Sealed Envelope Card */
+.envelope-sealed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+    cursor: pointer;
+}
+
+.envelope-body {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(135deg, #ff9a9e 0%, #ffb7b2 100%);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(255, 154, 158, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.envelope-body:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(255, 154, 158, 0.5);
+}
+
+.envelope-flap-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid rgba(255, 255, 255, 0.3);
+    border-right: 160px solid rgba(255, 255, 255, 0.3);
+    border-top: 80px solid rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+}
+
+.envelope-heart {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.envelope-label {
+    color: white;
+    font-family: 'Mali', cursive;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Opened Letter View */
+.letter-opened {
+    animation: fadeIn 0.6s ease-out;
+    padding: 1rem 0;
+}
+
+.letter-paper {
+    max-width: 550px;
+    width: 95%;
+    margin: 0 auto;
+    background: #fffdf9;
+    border-radius: 15px;
+    padding: clamp(1rem, 5vw, 2rem) clamp(1rem, 5vw, 2.5rem);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    font-family: 'Mali', cursive;
+    color: #555;
+    line-height: 1.8;
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30px;
+    right: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff9a9e, #fecfef, #ff9a9e, transparent);
+    border-radius: 0 0 5px 5px;
+}
+
+.letter-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.letter-header h3 {
+    font-family: 'Mali', cursive;
+    font-size: 1.5rem;
+    color: #ff9a9e;
+    font-weight: 700;
+}
+
+.letter-deco {
+    font-size: 1.2rem;
+}
+
+.letter-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fecfef, transparent);
+    margin: 1rem 0;
+}
+
+.letter-body {
+    text-align: left;
+    font-size: 1.05rem;
+}
+
+.letter-body p {
+    margin-bottom: 1rem;
+}
+
+.letter-greeting {
+    font-size: 1.15rem;
+    color: #d4af37;
+}
+
+.letter-signature {
+    text-align: right;
+    font-size: 1.1rem;
+    color: #ff9a9e;
+    margin-top: 0.5rem;
+}
+
+.close-letter-btn {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Mali', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+    transition: all 0.3s ease;
+}
+
+.close-letter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 154, 158, 0.5);
+}
+
+
+/* Quiz Section */
+.quiz-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.quiz-card h3 {
+    margin-bottom: 0;
+}
+
+#quiz-question {
+    font-family: 'Mali', cursive;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 154, 158, 0.08);
+    border-radius: 15px;
+    border-left: 4px solid #ff9a9e;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 154, 158, 0.15);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 1rem;
+    font-family: 'Mali', cursive;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.quiz-option:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(8px);
+    border-color: #ff9a9e;
+    box-shadow: 0 5px 15px rgba(255, 154, 158, 0.15);
+}
+
+.quiz-option.correct {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-color: #28a745;
+    color: #155724;
+    transform: scale(1.02);
+}
+
+.quiz-option.wrong {
+    background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+#quiz-result {
+    font-family: 'Mali', cursive;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Memories Caption */
+.photo-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-family: 'Mali', cursive;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Scratch Card Preview */
+.scratch-preview {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); /* Changed to pastel orange/peach */
+}
+
+/* Scratch Cards Section */
+.scratch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .scratch-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+    }
+}
+
+.scratch-card {
+    position: relative;
+    width: clamp(250px, 90vw, 280px);
+    height: clamp(180px, 60vw, 200px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+    margin: 0 auto;
+}
+
+.scratch-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff5f5, #ffe0e6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Mali', cursive;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #d63384;
+    text-align: center;
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+.scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    border-radius: 20px;
+    touch-action: none; /* Prevent scroll while scratching */
+}
+
+.scratch-label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Mali', cursive;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    pointer-events: none;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Heartbeat/Success Animation */
+@keyframes heartBeat {
+    0% { transform: rotateY(180deg) scale(1); }
+    15% { transform: rotateY(180deg) scale(1.15); }
+    30% { transform: rotateY(180deg) scale(1); }
+    45% { transform: rotateY(180deg) scale(1.15); }
+    100% { transform: rotateY(180deg) scale(1); }
+}
+
+@keyframes flashSuccess {
+    from { box-shadow: 0 0 20px rgba(40, 167, 69, 0.6); }
+    to { box-shadow: 0 5px 15px rgba(255, 154, 158, 0.2); }
+}
+
+/* Matching Game Preview */
+.match-preview {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Match Game Stats */
+.match-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Mali', cursive;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.match-stats strong {
+    color: #ff9a9e;
+    font-size: 1.3rem;
+}
+
+/* Match Board */
+.match-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+    .match-board {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 300px;
+    }
+}
+
+/* Match Card */
+.match-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    perspective: 600px;
+}
+
+.match-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.match-card.flipped .match-card-inner {
+    transform: rotateY(180deg);
+}
+
+.match-card-front,
+.match-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    box-shadow: 0 5px 15px rgba(255, 154, 158, 0.2);
+}
+
+.match-card-front {
+    background: linear-gradient(135deg, #ff9a9e, #fecfef);
+    color: white;
+    font-size: 1.8rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.match-card-back {
+    background: white;
+    transform: rotateY(180deg);
+    border: 2px solid rgba(255, 154, 158, 0.2);
+}
+
+.match-card:hover .match-card-inner {
+    transform: scale(1.05);
+}
+
+.match-card.flipped:hover .match-card-inner {
+    transform: rotateY(180deg) scale(1.05);
+}
+
+.match-card.matched .match-card-back {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-color: #28a745;
+    animation: heartBeat 0.8s ease-in-out, flashSuccess 0.8s ease-out;
+}
+
+.match-card.matched .match-card-inner {
+    transform: rotateY(180deg);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.match-card.matched {
+    pointer-events: none;
+}
