@@ -70,6 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerTitle = document.getElementById('header-title');
         if (headerTitle) headerTitle.textContent = `สุขสันต์วันครบรอบ ${CONFIG.nickname}`;
         
+        // Gift Screen
+        const giftTitle = document.getElementById('gift-title');
+        const giftMsg = document.getElementById('gift-message');
+        const giftEmoji = document.getElementById('gift-emoji');
+        const acceptBtn = document.getElementById('accept-gift-btn');
+
+        if (giftTitle) giftTitle.textContent = CONFIG.giftContents.title;
+        if (giftMsg) giftMsg.textContent = CONFIG.giftContents.message;
+        if (giftEmoji) giftEmoji.textContent = CONFIG.giftContents.giftEmoji;
+        if (acceptBtn) {
+            acceptBtn.textContent = CONFIG.giftContents.buttonText;
+            acceptBtn.addEventListener('click', () => {
+                document.getElementById('gift-screen').classList.add('hidden-gift');
+                showDashboard();
+            });
+        }
+        
         // Letter
         const letterBody = document.getElementById('letter-body');
         if (letterBody) {
@@ -229,6 +246,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function unlockSuccess() {
         if (lockScreen) lockScreen.classList.add('hide-lock');
+        
+        // Show Gift Screen instead of dashboard
+        const giftScreen = document.getElementById('gift-screen');
+        if (giftScreen) {
+            giftScreen.classList.remove('hidden-gift');
+        } else {
+            // Fallback if gift screen is missing
+            showDashboard();
+        }
+    }
+
+    function showDashboard() {
         if (mainContent) {
             mainContent.classList.remove('hidden-content');
             mainContent.classList.add('show-content');
