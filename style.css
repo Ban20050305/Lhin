@@ -1290,7 +1290,8 @@ body.dark-theme .title {
     text-shadow: 0 0 20px rgba(245, 87, 108, 0.6);
 }
 
-/* Fix "Sinking" text by making it much lighter */
+/* Fix "Sinking" text by making it much lighter and adding glow */
+body.dark-theme h3,
 body.dark-theme .subtitle, 
 body.dark-theme .section-subtitle,
 body.dark-theme .photo-caption, 
@@ -1302,7 +1303,13 @@ body.dark-theme .scratch-label,
 body.dark-theme .match-moves,
 body.dark-theme .match-pairs,
 body.dark-theme .time-box span {
-    color: var(--text-main) !important;
+    color: #ffffff !important; /* Pure White for maximum pop */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Subtle text glow */
+}
+
+body.dark-theme .bento-item h3 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 body.dark-theme .time-box strong {
