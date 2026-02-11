@@ -546,25 +546,31 @@ body {
     
     .header-card {
         grid-column: span 2;
-        padding: 3.5rem 1.2rem 2.5rem; /* Increased top padding for floating heart */
+        padding: 4rem 1rem 3rem; /* Extra top room for floating heart */
         height: auto;
-        min-height: 200px;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .header-card .title {
-        font-size: clamp(1.6rem, 7vw, 2.8rem);
-        line-height: 1.3;
-        margin-top: 0.5rem;
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+        line-height: 1.1; /* Tighter line height */
+        margin: 0.2rem 0; /* Minimal vertical margin */
     }
 
     .header-card .subtitle {
-        font-size: clamp(0.9rem, 4vw, 1.4rem);
-        margin-top: 8px;
+        font-size: clamp(1rem, 4.5vw, 1.35rem);
+        margin-top: 4px;
+        opacity: 0.95;
     }
 
     .floating-heart {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 3rem;
+        margin-bottom: 0;
+        line-height: 1;
     }
 
     .bento-item {
