@@ -244,7 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function unlockFail() {
         if (lockCard) {
             lockCard.classList.add('shake');
-            pinBoxes.forEach(box => box.style.borderColor = 'red');
+            
+            // Show error message
+            const errorEl = document.getElementById('pin-error');
+            if (errorEl) {
+                errorEl.textContent = CONFIG.pinErrorMsg || "รหัสหวั่นไหว... ลองใหม่อีกครั้งนะ";
+            }
+
+            // Clear inputs and focus first box
+            pinBoxes.forEach(box => {
+                box.value = '';
+                box.style.borderColor = '#ff4d4d';
+            });
+            pinBoxes[0].focus();
+
             setTimeout(() => {
                 lockCard.classList.remove('shake');
                 pinBoxes.forEach(box => box.style.borderColor = 'transparent');
