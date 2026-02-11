@@ -41,8 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('%cหยุดก่อน!', 'color: red; font-size: 30px; font-weight: bold; -webkit-text-stroke: 1px black;');
     console.log('%cพื้นที่ส่วนตัว ห้ามแอบดูโค้ดล่ะ! 🤫💖', 'font-size: 16px;');
 
-    // 4. (Optional) Detect DevTools opening by screen size difference
-    // This is just a deterrent, not fool-proof
+    // 4. Aggressive Anti-Debugging (Stalls DevTools)
+    // This will pause the browser repeatedly if DevTools is open
+    (function() {
+        const detectDevTools = function() {
+            const start = new Date();
+            debugger; // This triggers only if DevTools is open
+            const end = new Date();
+            if (end - start > 100) {
+                // If paused by debugger, reload or redirect
+                // window.location.reload(); 
+            }
+        };
+        setInterval(detectDevTools, 500);
+    })();
+
+    // 5. (Optional) Detect DevTools opening by screen size difference
     setInterval(() => {
         const threshold = 160;
         if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
