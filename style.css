@@ -1338,6 +1338,8 @@ body.dark-theme .letter-card p {
 .pulse-profile {
     width: 100px;
     height: 100px;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0; /* Prevent stretching in flex containers */
     border-radius: 50%;
     margin-bottom: 1.5rem;
     position: relative;
@@ -1422,6 +1424,7 @@ body.dark-theme .letter-card p {
     .pulse-profile {
         width: 80px;
         height: 80px;
+        flex-shrink: 0;
     }
     .header-card {
         min-height: 250px;
