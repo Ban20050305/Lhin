@@ -546,7 +546,22 @@ body {
     
     .header-card {
         grid-column: span 2;
-        padding: 2rem 1rem;
+        padding: 2.5rem 1.2rem;
+        height: auto; /* Allow growth */
+        min-height: 180px;
+    }
+
+    .header-card .title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+
+    .header-card .subtitle {
+        font-size: clamp(1rem, 4.5vw, 1.5rem);
+    }
+
+    .floating-heart {
+        font-size: 2.5rem;
     }
 
     .bento-item {
@@ -560,7 +575,7 @@ body {
     }
 
     .bento-item h3 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 }
 
