@@ -39,8 +39,8 @@
             <!-- Header Card (Full Width) -->
             <div class="bento-item header-card">
                 <div class="floating-heart">❤️</div>
-                <h1 class="title">สุขสันต์วันครบรอบ</h1>
-                <h2 class="subtitle">แด่.........</h2>
+                <h1 class="title" id="header-title">สุขสันต์วันครบรอบ</h1>
+                <h2 class="subtitle" id="header-subtitle">แด่.........</h2>
             </div>
 
             <!-- Time Card -->
@@ -131,28 +131,13 @@
                         <span class="letter-deco">💕</span>
                     </div>
                     <hr class="letter-divider">
-                    <div class="letter-body">
-                        <p class="letter-greeting"><strong>ถึง.......... ,</strong></p>
-                        <p>
-                            ขณะที่เขียนจดหมายฉบับนี้ เค้าตระหนักเลยว่าเค้าโชคดีแค่ไหนที่มีเธอ
-                        </p>
-                        <p>
-                            ทุกๆ วันที่มีเธอเหมือนเป็นการผจญภัยครั้งใหม่
-                            และทุกช่วงเวลาคือความทรงจำที่มีค่า
-                        </p>
-                        <p>
-                            เธอคือความสุข คือกำลังใจ และเป็นเพื่อนที่ดีที่สุดของเค้า
-                            ขอบคุณที่เป็นเธอนะ และขอบคุณที่เลือกเค้าในทุกๆ วัน
-                        </p>
-                        <p>
-                            เค้าสัญญาว่าจะรักเธอไม่ว่าจะผ่านอะไรก็ตาม
-                            สุขสันต์วันครบรอบนะที่รัก
-                        </p>
+                    <div class="letter-body" id="letter-body">
+                        <!-- Content will be injected from config.js -->
                     </div>
                     <hr class="letter-divider">
                     <p class="letter-signature">
-                        รักเสมอ,<br>
-                        <strong>[ชื่อของเธอ]</strong>
+                        <span id="letter-signoff">รักเสมอ,</span><br>
+                        <strong id="letter-from">[ชื่อของเธอ]</strong>
                     </p>
                 </div>
                 <button class="close-letter-btn" onclick="closeLetter()">พับจดหมาย ✉️</button>
@@ -181,46 +166,8 @@
             <div class="section-icon">📸</div>
             <h3 class="section-title">ความทรงจำของเรา</h3>
             <p class="section-subtitle">ช่วงเวลาดีๆ ที่เก็บไว้ในหัวใจ 🥰</p>
-            <div class="gallery">
-                <!-- 💡 วิธีเพิ่มรูปจริง: เปลี่ยน <div class="photo-placeholder"> เป็น <img src="ชื่อไฟล์.jpg"> -->
-                <!-- แล้ววางไฟล์รูปไว้ในโฟลเดอร์เดียวกับ index.html -->
-
-                <div class="photo-frame rotate-left">
-                    <div class="photo-placeholder">📷<br>เดทแรก</div>
-                    <div class="photo-caption">จุดเริ่มต้นของเรา 💫</div>
-                </div>
-                <div class="photo-frame rotate-right">
-                    <div class="photo-placeholder">📷<br>เรื่องตลก</div>
-                    <div class="photo-caption">เสียงหัวเราะ & รอยยิ้ม 😂</div>
-                </div>
-                <div class="photo-frame rotate-left">
-                    <div class="photo-placeholder">📷<br>ทริปโปรด</div>
-                    <div class="photo-caption">การผจญภัยของเรา 🌈</div>
-                </div>
-                <div class="photo-frame rotate-right">
-                    <div class="photo-placeholder">📷<br>วันพิเศษ</div>
-                    <div class="photo-caption">วันที่ไม่มีวันลืม 🎂</div>
-                </div>
-                <div class="photo-frame rotate-left">
-                    <div class="photo-placeholder">📷<br>ของกิน</div>
-                    <div class="photo-caption">มื้อโปรดของเรา 🍰</div>
-                </div>
-                <div class="photo-frame rotate-right">
-                    <div class="photo-placeholder">📷<br>คู่รัก</div>
-                    <div class="photo-caption">เราสองคน 💑</div>
-                </div>
-                <div class="photo-frame rotate-left">
-                    <div class="photo-placeholder">📷<br>ซีรีส์คู่</div>
-                    <div class="photo-caption">ดูด้วยกันทุกคืน 🎬</div>
-                </div>
-                <div class="photo-frame rotate-right">
-                    <div class="photo-placeholder">📷<br>ของขวัญ</div>
-                    <div class="photo-caption">เซอร์ไพรส์เล็กๆ 🎁</div>
-                </div>
-                <div class="photo-frame rotate-left">
-                    <div class="photo-placeholder">📷<br>กอดกัน</div>
-                    <div class="photo-caption">อบอุ่นที่สุด 🤗</div>
-                </div>
+            <div class="gallery" id="memories-gallery">
+                <!-- Content will be injected from config.js -->
             </div>
         </section>
 
@@ -230,27 +177,8 @@
             <div class="section-icon">🎟️</div>
             <h3 class="section-title">ขูดลุ้นเซอร์ไพรส์</h3>
             <p class="section-subtitle">ใช้นิ้วขูดเพื่อเปิดข้อความลับ 💝</p>
-            <div class="scratch-grid">
-                <div class="scratch-card">
-                    <div class="scratch-reveal">💖<br>เธอคือคนที่<br>ดีที่สุดของเค้า</div>
-                    <canvas class="scratch-canvas"></canvas>
-                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
-                </div>
-                <div class="scratch-card">
-                    <div class="scratch-reveal">🥰<br>เค้ารักเธอ<br>มากที่สุดเลย</div>
-                    <canvas class="scratch-canvas"></canvas>
-                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
-                </div>
-                <div class="scratch-card">
-                    <div class="scratch-reveal">🌟<br>ขอให้เราอยู่<br>ด้วยกันนานๆ</div>
-                    <canvas class="scratch-canvas"></canvas>
-                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
-                </div>
-                <div class="scratch-card">
-                    <div class="scratch-reveal">💌<br>เธอคือของขวัญ<br>ที่วิเศษที่สุด</div>
-                    <canvas class="scratch-canvas"></canvas>
-                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
-                </div>
+            <div class="scratch-grid" id="scratch-grid">
+                <!-- Content will be injected from config.js -->
             </div>
             <button class="close-letter-btn" onclick="resetScratchCards()" style="margin-top:1.5rem;">🔄 รีเซ็ตการ์ดใหม่</button>
         </section>
@@ -272,6 +200,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

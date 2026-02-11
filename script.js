@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
         heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
-        heartsContainer.appendChild(heart);
+        if (heartsContainer) heartsContainer.appendChild(heart);
         
         setTimeout(() => heart.remove(), 12000);
     }
@@ -18,6 +18,71 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(spawnHeart, 1500);
     // Spawn a few on load
     for (let i = 0; i < 5; i++) setTimeout(spawnHeart, i * 300);
+
+    // === DATA INITIALIZATION FROM CONFIG ===
+    function initAppFromConfig() {
+        // Basic Info
+        const headerTitle = document.getElementById('header-title');
+        const headerSubtitle = document.getElementById('header-subtitle');
+        if (headerTitle) headerTitle.textContent = `สุขสันต์วันครบรอบ ${CONFIG.nickname}`;
+        if (headerSubtitle) headerSubtitle.textContent = `แด่ ${CONFIG.partnerName}`;
+        
+        // Letter
+        const letterBody = document.getElementById('letter-body');
+        if (letterBody) {
+            letterBody.innerHTML = `<p class="letter-greeting"><strong>ถึง ${CONFIG.nickname} ,</strong></p>`;
+            CONFIG.letterContent.paragraphs.forEach(p => {
+                const pEl = document.createElement('p');
+                pEl.textContent = p;
+                letterBody.appendChild(pEl);
+            });
+        }
+        const signoffEl = document.getElementById('letter-signoff');
+        const fromEl = document.getElementById('letter-from');
+        if (signoffEl) signoffEl.textContent = CONFIG.letterContent.signOff;
+        if (fromEl) fromEl.textContent = CONFIG.letterContent.from;
+
+        // Memories
+        const gallery = document.getElementById('memories-gallery');
+        if (gallery) {
+            gallery.innerHTML = '';
+            CONFIG.memories.forEach((item, index) => {
+                const rotationClass = index % 2 === 0 ? 'rotate-left' : 'rotate-right';
+                const frame = document.createElement('div');
+                frame.className = `photo-frame ${rotationClass}`;
+                frame.innerHTML = `
+                    <div class="photo-placeholder">📷<br>${item.title}</div>
+                    <div class="photo-caption">${item.caption}</div>
+                `;
+                gallery.appendChild(frame);
+            });
+        }
+
+        // Scratch Cards
+        const scratchGrid = document.getElementById('scratch-grid');
+        if (scratchGrid) {
+            scratchGrid.innerHTML = '';
+            CONFIG.scratchMessages.forEach(() => {
+                const card = document.createElement('div');
+                card.className = 'scratch-card';
+                card.innerHTML = `
+                    <div class="scratch-reveal"></div>
+                    <canvas class="scratch-canvas"></canvas>
+                    <p class="scratch-label">ขูดตรงนี้ ✨</p>
+                `;
+                scratchGrid.appendChild(card);
+            });
+            
+            // Populate messages after creation
+            const reveals = scratchGrid.querySelectorAll('.scratch-reveal');
+            const icons = ["💖", "🥰", "🌟", "💌"];
+            CONFIG.scratchMessages.forEach((msg, i) => {
+                if (reveals[i]) reveals[i].innerHTML = `${icons[i % icons.length]}<br>${msg.replace(/\n/g, '<br>')}`;
+            });
+        }
+    }
+
+    initAppFromConfig();
 
     // Lock Screen Logic
     const lockScreen = document.getElementById('lock-screen');
@@ -29,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lockCard = document.querySelector('.lock-card');
 
     // === CONFIGURATION ===
-    const CORRECT_PASSWORD = "23022025"; // รหัสผ่าน 8 หลัก (เปลี่ยนเป็นวันครบรอบของคุณได้เลย)
-    const HINT_MESSAGE = "วันที่เราตกลงเป็นแฟนกัน (DDMMYYYY)"; // คำใบ้ภาษาไทย
+    const CORRECT_PASSWORD = CONFIG.passcode; 
+    const HINT_MESSAGE = `ใบ้ให้: ${CONFIG.passcode.substring(0,2)}...... (DDMMYYYY)`; 
     // =====================
 
     // === PIN BOX LOGIC ===
@@ -180,38 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimer(); // Run immediately
 
     // === QUIZ LOGIC ===
-    const quizData = [
-        {
-            question: "เราเจอกันครั้งแรกที่ไหน?",
-            options: ["ร้านกาแฟ", "มหาวิทยาลัย", "เจอกันออนไลน์", "เพื่อนแนะนำ"],
-            correct: 0 
-        },
-        {
-            question: "อาหารโปรดของเค้าคืออะไร?",
-            options: ["พิซซ่า", "ซูชิ", "เบอร์เกอร์", "ส้มตำ"],
-            correct: 1
-        },
-        {
-            question: "เพลงของเราคือเพลงอะไร?",
-            options: ["Perfect", "All of Me", "Lover", "Yellow"],
-            correct: 2
-        },
-        {
-            question: "สัตว์ที่เค้าชอบที่สุดคือตัวอะไร?",
-            options: ["แมว", "หมา", "กระต่าย", "นก"],
-            correct: 0
-        },
-        {
-            question: "เค้าชอบไปเที่ยวที่ไหนมากที่สุด?",
-            options: ["ทะเล", "ภูเขา", "สวนสนุก", "คาเฟ่"],
-            correct: 1
-        },
-        {
-            question: "ของขวัญที่เค้าอยากได้ที่สุดคืออะไร?",
-            options: ["ของกินอร่อยๆ", "ตุ๊กตา", "เวลาจากเธอ", "เงิน"],
-            correct: 2
-        }
-    ];
+    const quizData = CONFIG.quizQuestions;
 
     let currentQuestion = 0;
     let score = 0;
@@ -597,8 +631,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (msgEl) {
             msgEl.innerHTML = `
                 <div class="praise-card">
-                    <h4>เก่งที่สุดเลยยย! ❤️</h4>
-                    <p>เธอจำเก่งขนาดนี้ แสดงว่าใส่ใจเค้าสุดๆ เลยใช่ไหมเนี่ย 🥰</p>
+                    <h4>${CONFIG.matchSuccessMsg.title}</h4>
+                    <p>${CONFIG.matchSuccessMsg.text}</p>
                 </div>
             `;
         }
