@@ -104,9 +104,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="photo-placeholder" style="${item.image ? 'display:none;' : 'display:flex;'}">📷<br>${item.title}</div>
                     <div class="photo-caption">${item.caption}</div>
                 `;
+                
+                // Add click listener for lightbox
+                frame.onclick = () => {
+                    const imgSrc = item.image || ""; // Placeholder case handled in CSS/HTML
+                    if (imgSrc) {
+                        openLightbox(imgSrc, item.caption);
+                    }
+                };
+
                 gallery.appendChild(frame);
             });
         }
+
+        // --- Lightbox Functions ---
+        window.openLightbox = function(src, caption) {
+            const modal = document.getElementById('photo-lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            
+            img.src = src;
+            cap.textContent = caption;
+            
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        };
+
+        window.closeLightbox = function() {
+            const modal = document.getElementById('photo-lightbox');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        };
 
         // Scratch Cards
         const scratchGrid = document.getElementById('scratch-grid');
