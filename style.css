@@ -546,9 +546,9 @@ body {
     
     .header-card {
         grid-column: span 2;
-        padding: 4rem 1rem 3rem; /* Extra top room for floating heart */
+        padding: 3rem 1rem 2rem; /* Adjusted padding */
         height: auto;
-        min-height: 220px;
+        min-height: 180px; /* Reduced min-height */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -556,19 +556,19 @@ body {
     }
 
     .header-card .title {
-        font-size: clamp(1.8rem, 8vw, 2.6rem);
-        line-height: 1.1; /* Tighter line height */
-        margin: 0.2rem 0; /* Minimal vertical margin */
+        font-size: clamp(1.4rem, 6.5vw, 2.1rem); /* Reduced font size */
+        line-height: 1.2;
+        margin: 0.5rem 0 0.2rem; /* Added top margin */
     }
 
     .header-card .subtitle {
-        font-size: clamp(1rem, 4.5vw, 1.35rem);
-        margin-top: 4px;
-        opacity: 0.95;
+        font-size: clamp(0.9rem, 4vw, 1.2rem); /* Reduced subtitle size */
+        margin-top: 2px;
+        opacity: 0.9;
     }
 
     .floating-heart {
-        font-size: 3rem;
+        font-size: 2.4rem; /* Reduced emoji size */
         margin-bottom: 0;
         line-height: 1;
     }
