@@ -16,8 +16,6 @@ const CONFIG = {
 
     // --- การตั้งค่าพรีเมียม (Premium Settings) ---
     musicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // ใส่ลิงก์เพลง .mp3 (แนะนำเพลงที่ฟิลลิ่งหวานๆ)
-    showThemeToggle: true, // แสดงปุ่มเปลี่ยนโหมดกลางวัน/กลางคืน
-    defaultTheme: "day", // "day" หรือ "night"
     profileImage: "profile.jpg", // ใส่ชื่อไฟล์รูปคู่ของคุณ (วงกลมหน้าแรก)
     
     // --- จดหมาย (Letter) ---

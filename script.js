@@ -219,21 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2. Theme Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        if (themeBtn) {
-            if (CONFIG.defaultTheme === 'night') document.body.classList.add('dark-theme');
-            
-            themeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('dark-theme');
-                themeBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-            });
-        }
-
-        // 3. Heart Trail
+        // 2. Heart Trail
         initHeartTrail();
 
-        // 4. Scroll Reveal
+        // 3. Scroll Reveal
         initScrollReveal();
     }
 
