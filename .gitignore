@@ -1,0 +1,15 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+/brain/
+implementation_plan.md
+task.md
+walkthrough.md
+
+# Build and dependencies (for future-proofing)
+node_modules/
+dist/
+build/
+.env

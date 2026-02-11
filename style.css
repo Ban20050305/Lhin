@@ -539,13 +539,28 @@ body {
 /* Responsive Grid */
 @media (max-width: 600px) {
     .bento-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        padding: 0.5rem;
     }
     
-    .header-card, .memories-preview, .time-preview, .letter-preview, .quiz-preview {
-        grid-column: span 1;
-        height: auto;
-        min-height: 150px;
+    .header-card {
+        grid-column: span 2;
+        padding: 2rem 1rem;
+    }
+
+    .bento-item {
+        height: 140px;
+        padding: 1rem;
+        border-radius: 20px;
+    }
+
+    .icon-container {
+        font-size: 2.2rem;
+    }
+
+    .bento-item h3 {
+        font-size: 1rem;
     }
 }
 
