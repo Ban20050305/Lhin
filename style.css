@@ -1074,7 +1074,8 @@ body {
     border: 2px dashed #ff9a9e;
     border-radius: 20px;
     padding: 1.5rem;
-    animation: fadeIn 0.8s ease-out;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards; /* Added forwards to stay visible */
 }
 
 .praise-card h4 {

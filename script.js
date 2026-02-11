@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const msgEl = document.getElementById('match-success-msg');
         if (msgEl) {
             msgEl.innerHTML = `
-                <div class="praise-card fade-in">
+                <div class="praise-card">
                     <h4>เก่งที่สุดเลยยย! ❤️</h4>
                     <p>เธอจำเก่งขนาดนี้ แสดงว่าใส่ใจเค้าสุดๆ เลยใช่ไหมเนี่ย 🥰</p>
                 </div>
