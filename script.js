@@ -93,8 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rotationClass = index % 2 === 0 ? 'rotate-left' : 'rotate-right';
                 const frame = document.createElement('div');
                 frame.className = `photo-frame ${rotationClass}`;
+                
+                // Show actual image if provided, otherwise show placeholder
+                const photoContent = item.image 
+                    ? `<img src="${item.image}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                    : '';
+
                 frame.innerHTML = `
-                    <div class="photo-placeholder">📷<br>${item.title}</div>
+                    ${photoContent}
+                    <div class="photo-placeholder" style="${item.image ? 'display:none;' : 'display:flex;'}">📷<br>${item.title}</div>
                     <div class="photo-caption">${item.caption}</div>
                 `;
                 gallery.appendChild(frame);
