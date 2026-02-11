@@ -580,6 +580,35 @@ body {
     .bento-item h3 {
         font-size: 0.95rem;
     }
+
+    /* Memories Mobile Refinement */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .photo-frame {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/4;
+        padding: 8px;
+        transform: rotate(-2deg); /* Subtle rotation for mobile */
+    }
+
+    .photo-frame.rotate-right {
+        transform: rotate(2deg);
+    }
+
+    .photo-placeholder {
+        font-size: 0.8rem;
+    }
+
+    .photo-caption {
+        font-size: 0.75rem;
+        margin-top: 4px;
+    }
 }
 
 
