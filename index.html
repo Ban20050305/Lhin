@@ -45,11 +45,24 @@
     </div>
 
     <div class="container hidden-content" id="main-content">
+        <!-- Floating Controls (Premium) -->
+        <div class="floating-controls">
+            <button id="theme-toggle" class="control-btn" title="เปลี่ยนธีม">🌙</button>
+            <button id="music-toggle" class="control-btn" title="เปิด/ปิดเพลง">🎵</button>
+        </div>
+
+        <audio id="bg-music" loop>
+            <source src="" type="audio/mpeg">
+        </audio>
+
         <!-- BENTO GRID DASHBOARD -->
         <div id="bento-grid" class="bento-grid fade-in">
             <!-- Header Card (Full Width) -->
-            <div class="bento-item header-card">
+            <div class="bento-item header-card" id="header-card">
                 <div class="floating-heart">❤️</div>
+                <div class="pulse-profile" id="pulse-profile">
+                    <!-- Profile image from config -->
+                </div>
                 <h1 class="title" id="header-title">สุขสันต์วันครบรอบ</h1>
             </div>
 

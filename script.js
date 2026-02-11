@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Basic Info
         const headerTitle = document.getElementById('header-title');
         if (headerTitle) headerTitle.textContent = `สุขสันต์วันครบรอบ ${CONFIG.nickname}`;
+
+        // Profile Picture
+        const profileContainer = document.getElementById('pulse-profile');
+        if (profileContainer && CONFIG.profileImage) {
+            profileContainer.innerHTML = `<img src="${CONFIG.profileImage}" alt="Couple" onerror="this.style.display='none'">`;
+        }
         
         // Gift Screen
         const giftTitle = document.getElementById('gift-title');
@@ -84,6 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
             acceptBtn.addEventListener('click', () => {
                 document.getElementById('gift-screen').classList.add('hidden-gift');
                 showDashboard();
+                
+                // Auto-play music if config allows
+                const music = document.getElementById('bg-music');
+                if (music && CONFIG.musicUrl) {
+                    music.play().catch(e => console.log("Autoplay blocked by browser. User interaction needed."));
+                    const musicBtn = document.getElementById('music-toggle');
+                    if (musicBtn) musicBtn.style.animation = 'bloom 2s infinite';
+                }
             });
         }
         
@@ -179,6 +193,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (reveals[i]) reveals[i].innerHTML = `${icons[i % icons.length]}<br>${msg.replace(/\n/g, '<br>')}`;
             });
         }
+
+        // --- Premium Features Initializer ---
+        initPremiumFeatures();
+    }
+
+    function initPremiumFeatures() {
+        // 1. Background Music
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        if (music && musicBtn && CONFIG.musicUrl) {
+            music.querySelector('source').src = CONFIG.musicUrl;
+            music.load();
+            
+            musicBtn.addEventListener('click', () => {
+                if (music.paused) {
+                    music.play();
+                    musicBtn.textContent = '🎵';
+                    musicBtn.style.animation = 'bloom 2s infinite';
+                } else {
+                    music.pause();
+                    musicBtn.textContent = '🔇';
+                    musicBtn.style.animation = 'none';
+                }
+            });
+        }
+
+        // 2. Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            if (CONFIG.defaultTheme === 'night') document.body.classList.add('dark-theme');
+            
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                themeBtn.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+            });
+        }
+
+        // 3. Heart Trail
+        initHeartTrail();
+
+        // 4. Scroll Reveal
+        initScrollReveal();
+    }
+
+    function initHeartTrail() {
+        const createParticle = (x, y) => {
+            const particle = document.createElement('span');
+            particle.className = 'heart-trail';
+            particle.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            
+            const tx = (Math.random() - 0.5) * 100;
+            const ty = (Math.random() - 0.5) * 100;
+            
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.setProperty('--tx', `${tx}px`);
+            particle.style.setProperty('--ty', `${ty}px`);
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        };
+
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.8) createParticle(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            createParticle(touch.clientX, touch.clientY);
+        });
+    }
+
+    function initScrollReveal() {
+        const items = document.querySelectorAll('.bento-item');
+        items.forEach(item => item.classList.add('reveal'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        items.forEach(item => observer.observe(item));
     }
 
     initAppFromConfig();
