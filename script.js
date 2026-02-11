@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             question: "เราเจอกันครั้งแรกที่ไหน?",
             options: ["ร้านกาแฟ", "มหาวิทยาลัย", "เจอกันออนไลน์", "เพื่อนแนะนำ"],
-            correct: 0 // Index of correct answer
+            correct: 0 
         },
         {
             question: "อาหารโปรดของเค้าคืออะไร?",
@@ -193,12 +193,28 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             question: "เพลงของเราคือเพลงอะไร?",
-            options: ["Perfect - Ed Sheeran", "All of Me - John Legend", "Lover - Taylor Swift", "Yellow - Coldplay"],
+            options: ["Perfect", "All of Me", "Lover", "Yellow"],
+            correct: 2
+        },
+        {
+            question: "สัตว์ที่เค้าชอบที่สุดคือตัวอะไร?",
+            options: ["แมว", "หมา", "กระต่าย", "นก"],
+            correct: 0
+        },
+        {
+            question: "เค้าชอบไปเที่ยวที่ไหนมากที่สุด?",
+            options: ["ทะเล", "ภูเขา", "สวนสนุก", "คาเฟ่"],
+            correct: 1
+        },
+        {
+            question: "ของขวัญที่เค้าอยากได้ที่สุดคืออะไร?",
+            options: ["ของกินอร่อยๆ", "ตุ๊กตา", "เวลาจากเธอ", "เงิน"],
             correct: 2
         }
     ];
 
     let currentQuestion = 0;
+    let score = 0;
     const quizContainer = document.getElementById('quiz-container');
     const questionEl = document.getElementById('quiz-question');
     const optionsEl = document.getElementById('quiz-options');
@@ -207,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadQuiz() {
         if (currentQuestion >= quizData.length) {
-            quizContainer.innerHTML = "<h4>รู้ใจกันสุดๆ! ❤️</h4><p>คะแนน: รักเต็ม 100%</p>";
+            showFinalScore();
             return;
         }
 
@@ -228,12 +244,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkAnswer(selected, correct) {
         const options = document.querySelectorAll('.quiz-option');
-        options.forEach(opt => opt.style.pointerEvents = "none"); // Disable clicks
+        options.forEach(opt => opt.style.pointerEvents = "none");
 
         if (selected === correct) {
             options[selected].classList.add('correct');
             resultEl.textContent = "เย้! ถูกต้องนะค้าบ 🥰";
             resultEl.style.color = "green";
+            score++;
         } else {
             options[selected].classList.add('wrong');
             options[correct].classList.add('correct');
@@ -242,6 +259,106 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         nextBtn.style.display = "block";
+    }
+
+    function showFinalScore() {
+        let message = "";
+        let icon = "";
+        const percentage = (score / quizData.length) * 100;
+
+        if (percentage === 100) {
+            icon = "🏆";
+            message = "อื้อหือออ นี่มันแฟนพันธุ์แท้ตัวจริง! รู้ใจกันที่สุดในโลกเลย ขอบคุณที่ใส่ใจเค้าทุกอย่างนะค้าบ 💖✨";
+        } else if (percentage >= 60) {
+            icon = "🥰";
+            message = `เก่งมากๆ เลย! ได้ตั้ง ${score} คะแนนแหนะ เธอรู้ใจเค้าเยอะเหมือนกันนะเนี่ย รักที่สุดเลยยย 💝`;
+        } else {
+            icon = "🥺";
+            message = "ไม่เป็นไรน้าาา สงสัยเค้ายังเล่าเรื่องตัวเองไม่บ่อยพอ เดี๋ยวจะมาอ้อนให้ฟังบ่อยๆ เลยนะ! รักเธอเหมือนเดิม ❤️";
+        }
+
+        quizContainer.innerHTML = `
+            <div class="quiz-final-score fade-in">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">${icon}</div>
+                <h4>คะแนนของคุณ: ${score} / ${quizData.length}</h4>
+                <p style="margin: 1.5rem 0; line-height: 1.6;">${message}</p>
+                <button class="close-letter-btn" onclick="resetQuiz()">🔁 ลองทดสอบใหม่</button>
+            </div>
+        `;
+        
+        if (percentage === 100) {
+            launchConfetti();
+        }
+    }
+
+    window.resetQuiz = function() {
+        currentQuestion = 0;
+        score = 0;
+        quizContainer.innerHTML = `
+            <p id="quiz-question">คำถาม...</p>
+            <div id="quiz-options"></div>
+            <p id="quiz-result"></p>
+            <button id="next-question-btn" class="glow-button" style="display:none; margin-top:1rem;">ข้อต่อไป</button>
+        `;
+        // Re-assign references after clearing innerHTML
+        const newQuestionEl = document.getElementById('quiz-question');
+        const newOptionsEl = document.getElementById('quiz-options');
+        const newNextBtn = document.getElementById('next-question-btn');
+        const newResultEl = document.getElementById('quiz-result');
+        
+        // Wait for DOM
+        setTimeout(() => {
+            // Need to redefine refs because innerHTML nuked them
+            loadQuizWithNewRefs();
+        }, 10);
+    };
+
+    function loadQuizWithNewRefs() {
+        // Redefine elements (since they were replaced by innerHTML)
+        const qEl = document.getElementById('quiz-question');
+        const oEl = document.getElementById('quiz-options');
+        const rEl = document.getElementById('quiz-result');
+        const nBtn = document.getElementById('next-question-btn');
+
+        if (currentQuestion >= quizData.length) {
+            showFinalScore();
+            return;
+        }
+
+        const data = quizData[currentQuestion];
+        qEl.textContent = data.question;
+        oEl.innerHTML = "";
+        rEl.textContent = "";
+        nBtn.style.display = "none";
+
+        data.options.forEach((option, index) => {
+            const btn = document.createElement('button');
+            btn.textContent = option;
+            btn.classList.add('quiz-option');
+            btn.addEventListener('click', () => {
+                const options = oEl.querySelectorAll('.quiz-option');
+                options.forEach(opt => opt.style.pointerEvents = "none");
+                if (index === data.correct) {
+                    btn.classList.add('correct');
+                    rEl.textContent = "เย้! ถูกต้องนะค้าบ 🥰";
+                    rEl.style.color = "green";
+                    score++;
+                } else {
+                    btn.classList.add('wrong');
+                    options[data.correct].classList.add('correct');
+                    rEl.textContent = "อ้าว ผิดซะงั้น! 😜";
+                    rEl.style.color = "red";
+                }
+                nBtn.style.display = "block";
+            });
+            oEl.appendChild(btn);
+        });
+
+        // Add event listener to next button once
+        nBtn.onclick = () => {
+            currentQuestion++;
+            loadQuizWithNewRefs();
+        };
     }
 
     nextBtn.addEventListener('click', () => {
