@@ -1064,7 +1064,31 @@ body {
     font-size: 1.8rem;
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
+.match-success-msg {
+    margin-top: 1.5rem;
+    min-height: 100px;
+}
 
+.praise-card {
+    background: rgba(255, 154, 158, 0.1);
+    border: 2px dashed #ff9a9e;
+    border-radius: 20px;
+    padding: 1.5rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.praise-card h4 {
+    font-family: 'Mali', cursive;
+    color: #d63384;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.praise-card p {
+    font-family: 'Mali', cursive;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
 .match-card-back {
     background: white;
     transform: rotateY(180deg);

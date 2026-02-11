@@ -398,6 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
         movesDisplay.textContent = '0';
         pairsDisplay.textContent = '0';
         
+        const msgEl = document.getElementById('match-success-msg');
+        if (msgEl) msgEl.innerHTML = '';
+        
         // Create pairs and shuffle
         const gameCards = [...matchEmojis, ...matchEmojis];
         gameCards.sort(() => Math.random() - 0.5);
@@ -458,6 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (matchedPairs === matchEmojis.length) {
                     setTimeout(() => {
                         launchConfetti();
+                        showMatchSuccess();
                     }, 500);
                 }
             }, 500);
@@ -468,6 +472,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 flippedCards = [];
                 isLocked = false;
             }, 1000);
+        }
+    }
+
+    function showMatchSuccess() {
+        const msgEl = document.getElementById('match-success-msg');
+        if (msgEl) {
+            msgEl.innerHTML = `
+                <div class="praise-card fade-in">
+                    <h4>เก่งที่สุดเลยยย! ❤️</h4>
+                    <p>เธอจำเก่งขนาดนี้ แสดงว่าใส่ใจเค้าสุดๆ เลยใช่ไหมเนี่ย 🥰</p>
+                </div>
+            `;
         }
     }
 
