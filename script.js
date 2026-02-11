@@ -23,9 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initAppFromConfig() {
         // Basic Info
         const headerTitle = document.getElementById('header-title');
-        const headerSubtitle = document.getElementById('header-subtitle');
         if (headerTitle) headerTitle.textContent = `สุขสันต์วันครบรอบ ${CONFIG.nickname}`;
-        if (headerSubtitle) headerSubtitle.textContent = `แด่ ${CONFIG.partnerName}`;
         
         // Letter
         const letterBody = document.getElementById('letter-body');
